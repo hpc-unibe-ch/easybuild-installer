@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+UNPRIV_USER=l_rpmbuild
+LMOD_VERSION=7.7.14
+LMOD_PREFIX=/gpfs/software/ubelix.el7
+LUA_VERSION=5.1.4.8
+LUA_PREFIX=${LMOD_PREFIX}/Lua-${LUA_VERSION}
+EB_PREFIX=${LMOD_PREFIX}
+
