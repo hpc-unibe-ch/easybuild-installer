@@ -3,7 +3,8 @@
 set -e
 
 # Source settings file
-source $(dirname $0)/settings.sh
+workdir=$(dirname -- $(readlink -f $0))
+source $workdir/settings.sh
 
 #
 # EasyBuild installation
@@ -19,7 +20,7 @@ export EASYBUILD_BUILDPATH=/dev/shm
 python bootstrap_eb.py $EB_PREFIX
 
 mkdir -p $HOME/.config/easybuild
-ln -sf $(dirname $0)/eb-config.cfg $HOME/.config/easybuild/config.cfg
+ln -sf $workdir/eb-config.cfg $HOME/.config/easybuild/config.cfg
 
 # Maybe update by:
 # eb --install-latest-eb-release

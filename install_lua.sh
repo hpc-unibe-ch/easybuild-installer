@@ -3,7 +3,8 @@
 set -e
 
 # Source settings file
-source $(dirname $0)/settings.sh
+workdir=$(dirname -- $(readlink -f $0))
+source $workdir/settings.sh
 
 #
 # Lua installation
