@@ -15,8 +15,9 @@ then
 fi
 tar xf lua-${LUA_VERSION}.tar.gz
 cd lua-${LUA_VERSION}
-./configure --with-static=yes --prefix=${LUA_PREFIX} && make && make install
-cd ..
-export PATH=$LMOD_PREFIX/lua/bin:$PATH
-echo $PATH
+./configure --with-static=yes --prefix=${LUA_PREFIX}/${LUA_VERSION} && make && make install
+cd $LUA_PREFIX
+ln -s ${LUA_VERSION} lua
+
+echo "Lua installed in ${LUA_PREFIX}/${LUA_VERSION} and linked to ${LUA_PREFIX}/lua"
 

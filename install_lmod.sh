@@ -5,7 +5,7 @@ set -e
 # Source settings file
 source $(dirname $0)/settings.sh
 
-export PATH=$LUA_PREFIX/bin:$PATH
+export PATH=$LUA_PREFIX/lua/bin:$PATH
 echo "Lua used to link against: "`which lua`
 
 #
@@ -23,7 +23,7 @@ cd Lmod-${LMOD_VERSION}
 #    --with-disableNameAutoSwap=YES \  currently not used but here as a reminder
 #
 ./configure \
-    --with-lua-include=${LUA_PREFIX}/include \
+    --with-lua-include=${LUA_PREFIX}/lua/include \
     --prefix=${LMOD_PREFIX} \
     --with-spiderCacheDir=${LMOD_PREFIX}/lmod/lmod_cache \
     --with-updateSystemFn=${LMOD_PREFIX}/lmod/lmod_cache/cache_updated \
@@ -31,7 +31,7 @@ cd Lmod-${LMOD_VERSION}
     --with-caseIndependentSorting=YES \
     --with-pinVersions=YES \
     --with-cachedLoads=YES \
-    --with-siteName=UNIBE-ID \
+    --with-siteName=$SITE_NAME \
     --with-siteMsgFile=${LMOD_PREFIX}/lmod/etc/ubelix_site_msgs.lua
 
 make install

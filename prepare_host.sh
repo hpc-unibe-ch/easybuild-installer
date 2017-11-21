@@ -12,6 +12,7 @@ rm -rf /gpfs/software/ubelix-el7/*
 yum -y erase environment-modules
 
 yum -y install git patch
+yum -y install python-setuptools
 #yum -y install lua-posix lua-filesystem lua-json lua-lpeg lua-term
 #yum -y install ncurses-static readline-static
 
