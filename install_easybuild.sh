@@ -15,7 +15,7 @@ curl -O https://raw.githubusercontent.com/hpcugent/easybuild-framework/develop/e
 
 # bootstrap EasyBuild
 export EASYBUILD_INSTALLPATH_SOFTWARE=${EB_PREFIX}/apps
-export EASYBUILD_INSTALLPATH_MODULES=${EB_PREFIX}/modules
+export EASYBUILD_INSTALLPATH_MODULES=${EB_PREFIX}/modulefiles
 export EASYBUILD_BUILDPATH=/dev/shm
 python bootstrap_eb.py $EB_PREFIX
 
