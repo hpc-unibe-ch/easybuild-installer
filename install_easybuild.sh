@@ -6,6 +6,13 @@ set -e
 workdir=$(dirname -- $(readlink -f $0))
 source $workdir/settings.sh
 
+# Check for python-setuptools, which is required for EB
+if ! type easy_install >/dev/null 2>&1
+then
+  echo "Cannot find python-setuptools. These are required for EasyBuild."
+  exit 1
+fi
+
 #
 # EasyBuild installation
 #
