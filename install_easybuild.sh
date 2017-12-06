@@ -25,8 +25,9 @@ cp eb-config-${SITE_NAME} $HOME/.config/easybuild/config.cfg
 curl -O https://raw.githubusercontent.com/hpcugent/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py
 
 # bootstrap EasyBuild
-#export EASYBUILD_INSTALLPATH_SOFTWARE=${EB_PREFIX}/apps
+#export EASYBUILD_INSTALLPATH_SOFTWARE=${EB_PREFIX}/software
 #export EASYBUILD_INSTALLPATH_MODULES=${MODULE_ROOT_PATH}
+export EASYBUILD_SUBDIR_SOFTWARE=${EB_SUBDIR_SOFTWARE}
 export EASYBUILD_SUBDIR_MODULES=${EB_SUBDIR_MODULES}
 export EASYBUILD_BUILDPATH=/dev/shm
 python bootstrap_eb.py $EB_PREFIX
