@@ -17,17 +17,20 @@ fi
 # EasyBuild installation
 #
 # download script
-rm -f bootstrap_eb.py
+
+# Place config
+mkdir -p $HOME/.config/easybuild
+cp eb-config-${SITE_NAME} $HOME/.config/easybuild/config.cfg
+
 curl -O https://raw.githubusercontent.com/hpcugent/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py
 
 # bootstrap EasyBuild
-export EASYBUILD_INSTALLPATH_SOFTWARE=${EB_PREFIX}/apps
-export EASYBUILD_INSTALLPATH_MODULES=${EB_PREFIX}/modulefiles
+#export EASYBUILD_INSTALLPATH_SOFTWARE=${EB_PREFIX}/apps
+#export EASYBUILD_INSTALLPATH_MODULES=${MODULE_ROOT_PATH}
+export EASYBUILD_SUBDIR_MODULES=${EB_SUBDIR_MODULES}
 export EASYBUILD_BUILDPATH=/dev/shm
 python bootstrap_eb.py $EB_PREFIX
-
-mkdir -p $HOME/.config/easybuild
-ln -sf $workdir/eb-config.cfg $HOME/.config/easybuild/config.cfg
+rm -f bootstrap_eb.py
 
 # Maybe update by:
 # eb --install-latest-eb-release
