@@ -33,7 +33,7 @@ cd Lmod-${LMOD_VERSION}
     --with-pinVersions=YES \
     --with-cachedLoads=YES \
     --with-siteName=$SITE_NAME \
-    --with-siteMsgFile=${LMOD_PREFIX}/lmod/etc/ubelix_site_msgs.lua
+    --with-siteMsgFile=${EB_PREFIX}/lmod/site_msgs.lua
 make
 make install
 cd ..
