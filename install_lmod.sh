@@ -25,6 +25,7 @@ cd Lmod-${LMOD_VERSION}
 ./configure \
     --with-lua-include=${LUA_PREFIX}/lua/include \
     --prefix=${LMOD_PREFIX} \
+    --with-module-root-path=${EB_PREFIX}/${EB_SUBDIR_MODULES} \
     --with-spiderCacheDir=${LMOD_PREFIX}/lmod/lmod_cache \
     --with-updateSystemFn=${LMOD_PREFIX}/lmod/lmod_cache/cache_updated \
     --with-mpathSearch=YES \
@@ -37,9 +38,12 @@ make
 make install
 rm -rf Lmod-${LMOD_VERSION}
 
-mkdir ${LMOD_PREFIX}/lmod/ubelix
-cp lmod_init/lmod.sh ${LMOD_PREFIX}/lmod/ubelix/lmod.sh
-cp lmod_init/lmod.csh ${LMOD_PREFIX}/lmod/ubelix/lmod.csh
-cp lmod_init/site_msgs.lua ${LMOD_PREFIX}/lmod/ubelix/site_msgs.lua
+# This shouldn't be here probalby...
+mkdir -p ${EB_PREFIX}/lmod
+cp $workdir/lmod_init/lmod.sh ${EB_PREFIX}/lmod/lmod.sh
+cp $workdir/lmod_init/lmod.csh ${EB_PREFIX}/lmod/lmod.csh
+cp $workdir/lmod_init/site_msgs.lua ${EB_PREFIX}/lmod/site_msgs.lua
+
+echo "You now have to make the module function available by sourcing lmod.sh."
 
 exit 0
