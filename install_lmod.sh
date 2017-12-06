@@ -36,6 +36,7 @@ cd Lmod-${LMOD_VERSION}
     --with-siteMsgFile=${LMOD_PREFIX}/lmod/etc/ubelix_site_msgs.lua
 make
 make install
+cd ..
 rm -rf Lmod-${LMOD_VERSION}
 
 # This shouldn't be here probalby...
