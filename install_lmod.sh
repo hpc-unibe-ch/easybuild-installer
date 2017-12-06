@@ -12,12 +12,11 @@ echo "Lua used to link against: "`which lua`
 #
 # Lmod installation
 #
-rm -rf Lmod-${LMOD_VERSION}
-if [ ! -f Lmod-${LMOD_VERSION}.tar.gz ]
+if [ ! -f tmp/Lmod-${LMOD_VERSION}.tar.gz ]
 then
-  curl -L https://github.com/TACC/Lmod/archive/${LMOD_VERSION}.tar.gz -o Lmod-${LMOD_VERSION}.tar.gz
+  curl -L https://github.com/TACC/Lmod/archive/${LMOD_VERSION}.tar.gz -o tmp/Lmod-${LMOD_VERSION}.tar.gz
 fi
-tar xf Lmod-${LMOD_VERSION}.tar.gz
+tar xf tmp/Lmod-${LMOD_VERSION}.tar.gz
 cd Lmod-${LMOD_VERSION}
 
 # Configure Lmod witch certain defaults.
@@ -34,6 +33,13 @@ cd Lmod-${LMOD_VERSION}
     --with-cachedLoads=YES \
     --with-siteName=$SITE_NAME \
     --with-siteMsgFile=${LMOD_PREFIX}/lmod/etc/ubelix_site_msgs.lua
-
+make
 make install
+rm -rf Lmod-${LMOD_VERSION}
 
+mkdir ${LMOD_PREFIX}/lmod/ubelix
+cp lmod_init/lmod.sh ${LMOD_PREFIX}/lmod/ubelix/lmod.sh
+cp lmod_init/lmod.csh ${LMOD_PREFIX}/lmod/ubelix/lmod.csh
+cp lmod_init/site_msgs.lua ${LMOD_PREFIX}/lmod/ubelix/site_msgs.lua
+
+exit 0

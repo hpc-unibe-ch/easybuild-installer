@@ -4,12 +4,9 @@ set -e
 
 SITE_NAME=UBELIX-7
 UNPRIV_USER=l_easybuild
-
+BASE=/gpfs/software
+EB_PREFIX=${BASE}/el7
+LMOD_PREFIX=$BASE/lua_lmod/
 LMOD_VERSION=7.7.14
-LMOD_PREFIX=/gpfs/software/ubelix.el7
-
-LUA_VERSION=5.1.4.8
 LUA_PREFIX=${LMOD_PREFIX}/lua
-
-EB_PREFIX=${LMOD_PREFIX}
-
+LUA_VERSION=5.1.4.9
