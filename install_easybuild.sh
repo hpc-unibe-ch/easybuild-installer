@@ -13,20 +13,34 @@ then
   exit 1
 fi
 
+if [[ "$MODULEPATH" =~ el7-broadwell ]]
+then
+  EB_PREFIX=${BASE}/el7-broadwell
+elif [[ "$MODULEPATH" =~ el7-ivy ]]
+then
+  EB_PREFIX=${BASE}/el7-ivy
+elif [[ "$MODULEPATH" =~ el7-sandy ]]
+then
+  EB_PREFIX=${BASE}/el7-sandy
+else
+  echo "ATTENTION!!! EASYBUILD PLATFORM NOT SET!!"
+  exit
+fi
+
 #
 # EasyBuild installation
 #
 # download script
 
 # Place config
-mkdir -p $HOME/.config/easybuild
-cp eb-config-${SITE_NAME} $HOME/.config/easybuild/config.cfg
+#for configdir in $workdir/config/*
+#do
+#  ln -s $configdir $HOME/.$(basename $configdir)
+#done
 
 curl -O https://raw.githubusercontent.com/hpcugent/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py
 
 # bootstrap EasyBuild
-#export EASYBUILD_INSTALLPATH_SOFTWARE=${EB_PREFIX}/software
-#export EASYBUILD_INSTALLPATH_MODULES=${MODULE_ROOT_PATH}
 export EASYBUILD_SUBDIR_SOFTWARE=${EB_SUBDIR_SOFTWARE}
 export EASYBUILD_SUBDIR_MODULES=${EB_SUBDIR_MODULES}
 export EASYBUILD_BUILDPATH=/dev/shm
