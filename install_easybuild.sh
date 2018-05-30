@@ -16,12 +16,12 @@ fi
 if [[ "$MODULEPATH" =~ el7-broadwell ]]
 then
   EB_PREFIX=${BASE}/el7-broadwell
-elif [[ "$MODULEPATH" =~ el7-ivy ]]
+elif [[ "$MODULEPATH" =~ el7-ivybridge ]]
 then
-  EB_PREFIX=${BASE}/el7-ivy
-elif [[ "$MODULEPATH" =~ el7-sandy ]]
+  EB_PREFIX=${BASE}/el7-ivybridge
+elif [[ "$MODULEPATH" =~ el7-sandybridge ]]
 then
-  EB_PREFIX=${BASE}/el7-sandy
+  EB_PREFIX=${BASE}/el7-sandybridge
 else
   echo "ATTENTION!!! EASYBUILD PLATFORM NOT SET!!"
   exit
