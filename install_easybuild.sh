@@ -26,5 +26,12 @@ export EASYBUILD_BUILDPATH=/dev/shm
 python bootstrap_eb.py $EB_PREFIX
 rm -f bootstrap_eb.py
 
+# Generate config file for EasyBuild
+if [ ! -f $HOME/.config/easybuild/config.cfg ]
+then
+  mkdir -p ~/.config/easybuild
+  ln -s $workdir/config.cfg $HOME/.config/easybuild/config.cfg
+fi
+
 # Maybe update by:
 # eb --install-latest-eb-release
