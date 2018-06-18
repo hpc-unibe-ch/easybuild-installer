@@ -9,6 +9,8 @@ source $workdir/settings.sh
 export PATH=$LUA_PREFIX/lua/bin:$PATH
 echo "Lua used to link against: "`which lua`
 
+echo "Installing to ${LMOD_PREFIX}"
+
 #
 # Lmod installation
 #
@@ -25,25 +27,20 @@ cd Lmod-${LMOD_VERSION}
 ./configure \
     --with-lua-include=${LUA_PREFIX}/lua/include \
     --prefix=${LMOD_PREFIX} \
-    --with-module-root-path=${EB_PREFIX}/${EB_SUBDIR_MODULES} \
-    --with-spiderCacheDir=${LMOD_PREFIX}/lmod/lmod_cache \
-    --with-updateSystemFn=${LMOD_PREFIX}/lmod/lmod_cache/cache_updated \
+    --with-module-root-path=${LMOD_PREFIX}/${EB_SUBDIR_MODULES} \
+    --with-spiderCacheDir=${LMOD_PREFIX}/lmod_cache \
+    --with-updateSystemFn=${LMOD_PREFIX}/lmod_cache/cache_updated \
     --with-mpathSearch=YES \
     --with-caseIndependentSorting=YES \
     --with-pinVersions=YES \
     --with-cachedLoads=YES \
+    --with-shortTime=86400 \
     --with-siteName=$SITE_NAME \
-    --with-siteMsgFile=${EB_PREFIX}/lmod/site_msgs.lua
+    --with-siteMsgFile=${LMOD_PREFIX}/lmod/etc/site_msgs.lua
 make
 make install
 cd ..
 rm -rf Lmod-${LMOD_VERSION}
-
-# This shouldn't be here probalby...
-mkdir -p ${EB_PREFIX}/lmod
-cp $workdir/lmod_init/lmod.sh ${EB_PREFIX}/lmod/lmod.sh
-cp $workdir/lmod_init/lmod.csh ${EB_PREFIX}/lmod/lmod.csh
-cp $workdir/lmod_init/site_msgs.lua ${EB_PREFIX}/lmod/site_msgs.lua
 
 echo "You now have to make the module function available by sourcing lmod.sh."
 
