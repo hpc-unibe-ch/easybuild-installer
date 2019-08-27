@@ -16,7 +16,7 @@ fi
 
 tar xf tmp/lua-${LUA_VERSION}.tar.bz2
 cd lua-${LUA_VERSION}
-./configure --with-static=yes --prefix=${LUA_PREFIX}/${LUA_VERSION} && make && make install
+./configure --prefix=${LUA_PREFIX}/${LUA_VERSION} && make && make install
 cd $LUA_PREFIX
 ln -s ${LUA_VERSION} lua
 cd $workdir && rm -rf lua-${LUA_VERSION}
